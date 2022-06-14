@@ -2,7 +2,7 @@
 ###### tags: `Git` `Github`
 * [Git 基礎操作](https://w3c.hexschool.com/category/Git%20%E5%9F%BA%E7%A4%8E%E6%93%8D%E4%BD%9C)
 ## **git init - 新建數據庫**
-### 1. 新增一個資料夾，並右鍵點擊資料夾以 *Git Bash* 開啟
+### 1. 新增一個資料夾，並右鍵點擊資料夾以Git Bash開啟
 ![](https://i.imgur.com/d9rmG07.png)
 ### 2. 輸入 *git init*
 :::info
@@ -11,7 +11,7 @@ yehto@XuanYe MINGW64 ~/OneDrive/桌面/NCU/Git課程/git init (master)
 $ git init
 Initialized empty Git repository in C:/Users/yehto/OneDrive/桌面/NCU/Git課程/git init/.git/
 ```
-此時新建Repository成功，會在你的資料夾建立一個.git資料夾，任何版本都會透過它進行監控
+此時新建repository成功，會在你的資料夾建立一個.git資料夾，任何版本都會透過它進行監控
 :::
 ## **git add & git commit - 提交版本**
 ### 1. 在資料夾內新增一個檔案
@@ -32,17 +32,17 @@ Untracked files:
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
-可以看到Untracked files有剛新增的檔案，Untracked的意思是Git偵測到你有新增這筆檔案，但尚未是Git追蹤的對象。
+可以看到 *Untracked files* 有剛新增的檔案，Untracked的意思是Git偵測到你有新增這筆檔案，但尚未是Git追蹤的對象。
 :::
 ### 3. 輸入 *git add*
-* ####  git add <檔案名稱>
+> ####  git add <file name>
 :::info
 ```
 $ git add index.html
 ```
 *git add* 將檔案加入索引，就可以將檔案加入到Git追蹤的對象
 :::
-* #### git add .
+> #### git add .
 :::info
 ```
 $ git add .
@@ -61,10 +61,10 @@ Changes to be committed:
   (use "git rm --cached <file>..." to unstage)
         new file:   index.html
 ```
-可以發現檔案從Untracked files變成Changes to be committed，這樣就表示成功加入索引。
+可以發現檔案從 *Untracked files* 變成 *Changes to be committed* ，這樣就表示成功加入索引。
 :::
 ### 5. 輸入 *git commit*
-* #### git commit -m "<填寫版本資訊>"
+> #### git commit -m "<version info>"
 :::info
 ```
 $ git commit -m "version 1"
@@ -72,7 +72,7 @@ $ git commit -m "version 1"
  1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100644 index.html
 ```
-*git commit* 將放在索引的檔案提交(commit)成一個新版本。
+*git commit* 將放在索引的檔案提交成一個新版本。
 :::
 ### ６. 再再次輸入 *git status*
 :::success
@@ -95,3 +95,6 @@ Date:   Mon Jun 13 23:36:39 2022 +0800
 ```
 看到剛才commit的版本更新紀錄，表示成功了!
 :::
+## **Sourcetree - Git版控工具**
+### 下載[Sourcetree](https://www.sourcetreeapp.com/)
+![](https://i.imgur.com/0fYyYOb.png)
