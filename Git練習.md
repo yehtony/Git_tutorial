@@ -9,7 +9,7 @@
 #### 5. 提交第二個版本
 ### 結果
 :::success
-```
+``` git
 $ git log
 commit c0678264182124bf44099cab31d3046bd3d08517 (HEAD -> master)
 Author: XuanYe <yexuanncu@gmail.com>
@@ -26,7 +26,7 @@ Date:   Tue Jun 14 12:36:50 2022 +0800
 *git log* 會出現兩個版本
 :::
 :::spoiler 解答
-```
+``` git
 $ git init
 $ touch index.html
 $ git add .
@@ -37,3 +37,5 @@ $ git add .
 $ git commit -m "插入css"
 ```
 ::: 
+## **Git 分支**
+### [Learn Git Branching](https://learngitbranching.js.org/?locale=zh_TW)
