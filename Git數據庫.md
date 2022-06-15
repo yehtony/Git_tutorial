@@ -14,14 +14,13 @@
 #### Git Bash開啟資料夾，輸入指令
 > #### git remote add <repository name> <repository url>  
 :::info
-```
+``` git
 $ git remote add origin https://github.com/yehtony/Git_practice.git
 ```
 *git remote add* 表示在本地添加遠端數據庫 。 
-
 :::
 :::success
-```
+``` git
 $ git remote
 origin
 ```
@@ -31,7 +30,7 @@ origin
 ### 當本地資料新於遠端資料，推送本地資料來使資料同步
 > #### git push <repository name> <branch name>
 :::info
-```
+``` git
 $ git push -u origin master
 Enumerating objects: 10, done.
 Counting objects: 100% (10/10), done.
@@ -51,7 +50,7 @@ branch 'master' set up to track 'origin/master'.
 ### 當遠端資料新於本地資料，抓取遠端資料來使資料同步
 > #### git pull
 :::info
-```
+``` git
 $ git pull
 remote: Enumerating objects: 9, done.
 remote: Counting objects: 100% (9/9), done.
@@ -70,7 +69,7 @@ Fast-forward
 可以看到 *Updating* 表示成功更新資料
 :::
 :::success
-```
+``` git
 $ git log
 commit 312c2b4eb6ef6cdf2158044eb962e41794cd605c (HEAD -> master, origin/master)
 Author: YehTony <66704016+yehtony@users.noreply.github.com>
@@ -92,7 +91,7 @@ Date:   Tue Jun 14 18:54:19 2022 +0800
 #### 新建一個資料夾並以Git Bash開啟
 > #### git clone <repository url>
 :::info
-```
+``` git
 $ git clone https://github.com/yehtony/Git_practice.git
 Cloning into 'Git_practice'...
 remote: Enumerating objects: 16, done.
@@ -103,11 +102,11 @@ Receiving objects: 100% (16/16), done.
 Resolving deltas: 100% (2/2), done.
 ```
 *clone* 遠端數據庫到指定資料夾。
-```
+``` git
 $ ls
 Git_practice/
 ```
-```
+``` git
 $ git remote
 origin
 ```
