@@ -15,7 +15,7 @@
 #### 1. 電腦搜尋列輸入Git Bash並打開
 #### 2. 輸入 *git --version*
 :::success
-```
+``` git
 yehto@XuanYe MINGW64 ~
 $ git --version
 git version 2.36.1.windows.1
@@ -25,7 +25,7 @@ git version 2.36.1.windows.1
 ### 設定個人資訊
 #### 1. 接續在Git Bash輸入下列指令，引號內換成個人資訊
 :::info
-```
+``` git
 git config --global user.name "您的姓名"
 git config --global user.email "您的Email"
 ```
@@ -33,7 +33,7 @@ git config --global user.email "您的Email"
 :::
 #### 2. 輸入 *git config --list*
 :::success
-```
+``` git
 yehto@XuanYe MINGW64 /
 $ git config --list
 user.name=XuanYe
