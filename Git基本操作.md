@@ -15,12 +15,12 @@ Initialized empty Git repository in C:/Users/yehto/OneDrive/桌面/NCU/Git課程
 :::
 ## **git add & git commit - 提交版本**
 ### 1. 在資料夾內新增一個檔案
-```
+``` git
 $ touch index.html
 ```
 ### 2. 輸入 *git status*
 :::success
-```
+``` git
 $ git status
 On branch master
 
@@ -37,21 +37,21 @@ nothing added to commit but untracked files present (use "git add" to track)
 ### 3. 輸入 *git add*
 > ####  git add <file name>
 :::info
-```
+``` git
 $ git add index.html
 ```
 *git add* 將檔案加入索引，就可以將檔案加入到Git追蹤的對象
 :::
 > #### git add .
 :::info
-```
+``` git
 $ git add .
 ```
 也可以用 *git add .* 將資料夾內所有檔案加入索引
 :::
 ### 4. 再次輸入 *git status*
 :::success
-```
+``` git
 $ git status
 On branch master
 
@@ -66,7 +66,7 @@ Changes to be committed:
 ### 5. 輸入 *git commit*
 > #### git commit -m "<version info>"
 :::info
-```
+``` git
 $ git commit -m "version 1"
 [master (root-commit) 055a2a7] version 1
  1 file changed, 0 insertions(+), 0 deletions(-)
@@ -76,7 +76,7 @@ $ git commit -m "version 1"
 :::
 ### ６. 再再次輸入 *git status*
 :::success
-```
+``` git
 $ git status
 On branch master
 nothing to commit, working tree clean
@@ -85,7 +85,7 @@ nothing to commit, working tree clean
 :::
 ## **git log - 查詢版本**
 :::success
-```
+``` git
 $ git log
 commit 055a2a7d5cc45d85a5da1d57c2e683508754f612 (HEAD -> master)
 Author: XuanYe <yexuanncu@gmail.com>
