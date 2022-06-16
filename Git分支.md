@@ -53,7 +53,9 @@ HEAD detached at 39ed402
 查看log和status也會發現版本切換到指定的commit，HEAD也指向現在的commit。
 :::
 --- 
-### ==接下來的部分會以Sourcetree演示，因為以程式碼方式呈現會過於龐雜==
+:::danger
+**註明：接下來的部分會以Sourcetree演示，因為以程式碼方式呈現會過於龐雜**
+:::
 ## **git branch - 建立分支**
 ### 方便進行不同版本的開發與管理
 #### 1. 原本的分支master(2個commit，HEAD>master)
@@ -79,6 +81,9 @@ $ git commit -m "新增js"
 #### 最後可以看到dev branch新增了版本，而master branch停留在原始版本，這樣我們就可以利用branch來達到更好的版本控制。
 ## **git branch - 合併分支**
 ### 用來合併版本
+:::danger
+**註明：接下來會以c來代稱commit，由下到上會依數字小到大表示，例如c1是第一個commit**
+:::
 * ### 快轉合併 - fast-forward
     1. dev建立出來時，是跟master在相同的commit上，c2(新增css)可以當做是dev的初始commit位置，假設接下來我們更新了dev。
     2. 過程中，若master沒有任何更新，表示master停留在c2的位置，此時用master去merge dev就會觸發快轉合併。
@@ -96,13 +101,17 @@ $ git merge dev
 ![](https://i.imgur.com/zvV5jvW.png)
 #### 此時master移動到c3(新增js)，與dev同步版本。
 * ### 非快轉合併 - no-fast-forward
+:::warning
+no-ff有兩種情況，無衝突合併和衝突合併。無衝突代表兩個branch在同一檔案之間內容沒有衝突(通常只要修改同一檔案就會發生衝突，除非修改內容一樣)；而衝突代表兩個branch在同一檔案之間有不同修改(內容)，造成合併衝突。
+:::
+* ### 無衝突合併
     1. 首先一樣更新dev。
-    2. 這次在過程中，master也更新了其他版本，代表master已經不在c2的位置，這時merge dev就會觸發非快轉合併。
+    2. 接著在過程中，我們也更新了master(這裡我們用新增檔案的方式來避免衝突)，代表master已經不在c2的位置，這時merge dev就會觸發非快轉合併。
     * 與fast-foward相反，當你目前的branch不完全被包含於merge branch裡。
 
 #### ==操作前注意HEAD是指向master==
-#### 先變回原始環境(指令之後再解釋)
-```
+#### 先回到初始環境(退回合併前，指令之後再解釋)
+``` git
 git reset HEAD^ --hard
 ```
 ![](https://i.imgur.com/gS4KtfF.png)
@@ -113,12 +122,13 @@ $ git add .
 $ git commit -m "新增js"
 ```
 ![](https://i.imgur.com/M6aHGy5.png)
+    
 可以看到master branch和dev branch從c2後產生分岔，此時master已經不完全包含於dev。
 #### 2. 合併分支
 ``` git
 $ git merge dev
 ```
-此時因為合併衝突會進入merge編輯器並出現下列訊息
+此時會進入merge編輯器並出現下列訊息
 ``` git
 Merge branch 'dev'
 # Please enter a commit message to explain why this merge is necessary,
@@ -127,9 +137,71 @@ Merge branch 'dev'
 # Lines starting with '#' will be ignored, and an empty message aborts
 # the commit.
 ```
-輸入指令 *:wq* 離開即可
+可以輸入commit說明訊息或直接輸入指令 *:wq* 離開即可
 ``` git
 :wq
 ```
 ![](https://i.imgur.com/fMsEJMO.png)
-此時看到master合併了dev的commit並且多了一個commit(c5)，因為c3和c4同時對c2進行修改，必須多出一個c5紀錄這兩個commit，這樣的合併在git中稱為三路合併。
+
+#### 此時看到master合併了dev的commit並且多了一個commit(c5)，因為c3和c4同時對c2進行修改，必須多出一個c5紀錄這兩個commit，這樣的合併在git中稱為三路合併。
+* ### 衝突合併
+#### 退回合併前
+``` git
+git reset HEAD^ --hard
+```
+![](https://i.imgur.com/M6aHGy5.png)
+:::danger
+**註明：下面我把master的新增js改成新增master.js，避免混淆**
+:::
+#### 1. 對dev及master進行修改，並各進行一次commit，(這邊我修改了html和css檔)
+#### ==記住要先checkout到指定的branch再進行修改，commit前記得先加入(add)==
+
+![](https://i.imgur.com/XLb1HY7.png)
+
+可以看到兩個branch各多了一個commit，c5(dev網頁)、c6(master網頁)，
+#### 2. 合併分支
+```
+$ git merge dev
+Auto-merging all.css
+CONFLICT (content): Merge conflict in all.css
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+```
+![](https://i.imgur.com/IOGETYG.png)
+
+**這時會發生衝突，可以看到程式碼出現 *merge conflict in all.css / index.html*，因為兩個branch修改了同一個檔案，所以merge commit無法確認檔案內容。**
+    
+**這裡有兩種選擇：**
+* #### 直接取消合併
+```
+git merge --abort
+```
+* #### 修改衝突檔案
+我們要打開檔案進行修改，可以看到Stage files裡有警示號的檔案代表衝突，點開進行修改與確認。
+``` css=
+body {
+    background-color: teal;
+    color: royalblue;
+<<<<<<< HEAD
+}
+
+div {
+    color: mediumvioletred;
+=======
+>>>>>>> dev
+}
+```
+可以看到檔案包含了c5與c6的修改內容，從 <<<<<<< *HEAD* 到 ======= 代表HEAD，也就是master的修改內容，而 ======= 到 >>>>>>> *dev* 代表dev的修改內容，這裡我們要決定commit的檔案內容，確認完無誤後儲存檔案。
+    
+#### 3. 重新commit
+將檔案新增到索引後會發現衝突消失了。
+
+![](https://i.imgur.com/MA62LbU.png)
+    
+這時將修改過的檔案重新commit
+    
+![](https://i.imgur.com/oLgbvaZ.png)
+
+**合併成功，多出c7(合併網頁)。**
+
