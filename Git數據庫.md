@@ -46,8 +46,8 @@ branch 'master' set up to track 'origin/master'.
 *git push* 表示將本地資料推送到遠端數據庫。
 *branch 'master' set up to track 'origin/master'* 表示成功將資料推送到遠端數據庫分支。
 :::
-## **git pull - 抓取遠端數據庫資料**
-### 當遠端資料新於本地資料，抓取遠端資料來使資料同步
+## **git pull - 抓取遠端數據庫(合併資料)**
+### 當遠端資料異於本地資料，抓取遠端資料來使資料同步
 > #### git pull
 :::info
 ``` git
@@ -65,8 +65,7 @@ Fast-forward
  index.html | 4 ++--
  2 files changed, 5 insertions(+), 4 deletions(-)
 ```
-*git pull* 表示將遠端資料抓取至本地數據庫。
-可以看到 *Updating* 表示成功更新資料
+*git pull* 表示將遠端資料抓取至本地數據庫，可以看到 *Updating* 表示成功更新(分支同步)。
 :::
 :::success
 ``` git
@@ -85,6 +84,38 @@ Date:   Tue Jun 14 18:54:19 2022 +0800
 ```
 *git log* 可以看到新的 *commit* ，是從遠端抓下來的資料。
 :::
+![](https://i.imgur.com/mT8gE2a.png)
+    
+**抓取遠端資料到遠端分支(origin/master)，並且本地分支(master)自動合併遠端分支，同步資料。**
+## **git fetch - 抓取遠端數據庫(不合併資料)**
+
+:::info
+``` git
+$ git fetch
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (4/4), 756 bytes | 151.00 KiB/s, done.
+From https://github.com/yehtony/Git_practice
+   97edecf..b6ed94c  master     -> origin/master
+```
+*git fetch* 表示將遠端資料抓取至本地數據庫，但是資料僅更新至遠端分支。
+:::
+:::success
+``` git 
+$ git log
+commit b6ed94c5ddd8851f9aee01bb4b81094e2e377ab0 (HEAD, origin/master)
+Author: YehTony <66704016+yehtony@users.noreply.github.com>
+Date:   Fri Jun 17 23:39:03 2022 +0800
+
+    更改css
+```
+*git log* 可以看到新的*commit* HEAD只指向遠端分支。
+:::
+![](https://i.imgur.com/4R0KIN1.png)
+
+**可以看到遠端資料只抓取到遠端分支(origin/master)，本地分支與遠端分支出現分岐。**
 ## **git clone - 複製遠端數據庫**
 #### Repository URL
 ![](https://i.imgur.com/4X86SRU.png)
