@@ -79,7 +79,7 @@ $ git commit -m "新增js"
 ```
 ![](https://i.imgur.com/Fl4Mxpl.png)
 #### 最後可以看到dev branch新增了版本，而master branch停留在原始版本，這樣我們就可以利用branch來達到更好的版本控制。
-## **git branch - 合併分支**
+## **git merge - 合併分支(保留分支紀錄)**
 ### 用來合併版本
 :::danger
 **註明：接下來會以c來代稱commit，由下到上會依數字小到大表示，例如c1是第一個commit**
@@ -204,4 +204,34 @@ div {
 ![](https://i.imgur.com/oLgbvaZ.png)
 
 **合併成功，多出c7(合併網頁)。**
+## git rebase - 合併分支(合併分支紀錄)
+#### 一樣先退回合併前，並切換到指定的branch
+#### ==與merge不同，merge是切換到要merge的分支(master)，rebase是切換到要被merge的版分支(dev)==
+#### 1. 合併分支
+> #### git rebase <branch name>
+``` git
+$ git rebase master
+```
+![](https://i.imgur.com/yI4rOZj.png)
+* #### 取消合併
+``` git 
+git rebase --abort
+```
+* #### 合併分支
+``` git
+$ git add .
+$ git rebase --continue
+```
+![](https://i.imgur.com/Uv2ZFmd.png)
+    
+可以看到個dev合併到分支，但master與dev版本不同。
+#### 2. 同步版本
+``` git
+$ git checkout master
+$ git merge dev
+```
+![](https://i.imgur.com/rj5lj1a.png)
+    
+**合併成功，兩個branch版本同步，且原本dev分支紀錄清除。**
+
 
